@@ -16,7 +16,7 @@
                             <strong>Tarih: </strong>
                             <i><?php echo turkcetarih_formati('j F Y',$contents["tarih"]) ?></i>
                         </div>
-                        <div class="col-md-6 col-sm-12 sayfaBilgileri">
+                        <div class="col-md-6 col-sm-12 text-md-right text-left sayfaBilgileri">
                             <strong>Kategori: </strong>
                             <i><?php echo mb_convert_case($contents["categorytitle"], MB_CASE_TITLE, "UTF-8") ?></i>
                         </div>
