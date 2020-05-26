@@ -1,0 +1,28 @@
+body{
+    color: lightgray;
+    /*background-image: url("../assets/bg/bg.jpg");*/
+    background-color: #292727;
+}
+
+/* **** ADMIN ENTRY **** */
+hr{
+    background-color: lightgray;
+}
+.mother{
+    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh; /* These two lines are counted as one :-)       */
+
+    display: flex;
+    align-items: center;
+}
+.container{
+    width: 80vh;
+    background-color: #1C1A1A;
+    padding: 25px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px lightgray;
+}
+.buton{
+    text-align: right;
+}
+/* **** ... admin entry **** */

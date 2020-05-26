@@ -1,0 +1,340 @@
+body{
+    background-color: whitesmoke;
+    /*background-color: #ff922b;*/
+
+}
+
+.btn{
+    font-size: 12px;
+}
+label{
+    font-size: 14px;
+    font-weight: 500;
+}
+.form-group input{
+    font-size: 12px !important;
+}
+.form-group select{
+    font-size: 12px !important;
+}
+
+input:read-only{
+    background-color: #EEEEEE;
+    border-radius: 3px;
+}
+
+
+
+
+
+/* **** HEADER **** */
+#nav-top{
+    background-color: #343a40 !important;
+    padding:15px;
+    margin-bottom: 20px;
+    min-height: auto;
+}
+#nav-top a{
+    text-decoration: none;
+}
+
+#header-icon{
+    color: whitesmoke;
+    font-size: 30px;
+}
+
+#header-text{
+    color: whitesmoke;
+    font-weight: 700;
+    font-size: 20px;
+}
+#header-user{
+    color: limegreen;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: capitalize;
+    margin-right: 10px;
+}
+
+#header-exit{
+    margin-top: 2px;
+}
+
+#header-exit a{
+    color: whitesmoke !important;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+
+
+/*Sol Menü*/
+
+#hiddenBarDiv{
+    width: 40px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    font-size: 25px;
+    display: none;
+}
+
+#hiddenBarIcon{
+    color: #343a40;
+}
+
+#nav-left{
+    background-color: #343a40;
+    display: flex;
+    flex-direction: column;
+    /*width: 30vh;*/
+    min-width: 180px;
+    height: 80vh;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 5px;
+    font-weight: 700;
+    float: left;
+
+}
+
+.nav-ul{
+    list-style-type: none;
+    padding-left: 0;
+}
+.nav-ul li{
+    border-bottom: 1px solid white;
+}
+.nav-ul li a{
+    padding: 10px 0 10px 20px;
+}
+.nav-ul a{
+    color: #9a9da0;
+    display: block;
+    line-height: 20px;
+    font-size: 13px;
+    padding: 5px;
+}
+.nav-ul a:hover{
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+#nav-left-icon{
+    margin-right: 10px;
+}
+
+#dropdownMenu {
+    display: none;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    /*background-color: #f9f9f9;*/
+    /*min-width: 160px;*/
+    /*box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);*/
+    /*padding: 12px 16px;*/
+    /*z-index: 1;*/
+}
+
+
+@media screen and (max-width: 900px) {
+    #nav-left{
+        display: none;
+    }
+
+    #hiddenBarDiv{
+        display: block;
+    }
+}
+
+
+/* **** ... header **** */
+
+
+/* **** ANASAYFA **** */
+
+#headerInfo{
+    background-color: #343a40;
+    color: whitesmoke;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 5px;
+
+}
+
+#headerInfoUl{
+    padding: 5px;
+    /*margin: 0;*/
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.headerInfoLi{
+    /*background-color: darkslategray;*/
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+
+.headerInfoLi > span {
+    color:limegreen;
+    margin-left: 5px;
+}
+
+
+
+#tableHeaderContainer{
+    background-color: #343a40;
+    color: whitesmoke;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+}
+
+.tableHeaderDivs{
+    margin: 5px 5px 5px 5px;
+    border-radius: 5px;
+}
+
+#searchContent{
+    margin-left: auto;
+}
+
+#pageNoSelect{
+    padding: 5px;
+    border-radius: 5px;
+}
+
+
+#content-table {
+    font-size: 11px;
+    border-collapse: collapse !important;
+}
+
+
+.table .thead-dark th{
+    background-color: #343a40;
+    border:1px solid black;
+}
+
+
+#content-table tr td{
+    border:1px solid black;
+    min-width: 20px;
+    max-width: 200px;
+}
+
+
+#content-text-td{
+    min-width: 400px !important;
+}
+
+/*Görüntüleme sayısının yanındaki + ve - için */
+a.viewConter {
+    font-size: 20px;
+    color:whitesmoke;
+    display: inline-block;
+    padding: 1px 3px;
+}
+a.viewConter:hover{
+    color: lightskyblue;
+    text-decoration: none;
+}
+
+/* **** ... anasayfa **** */
+
+
+/* **** YENİ YAZI EKLE **** */
+.addTextMotherDiv{
+    border: 1px solid white;
+    background-color: #e9ecef;
+    border-radius: 5px;
+}
+#addTextTitle{
+    display: inline-block;
+    padding: 10px;
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    background-color: whitesmoke;
+    border-radius: 5px;
+    color: darkgray;
+    word-break: break-word;
+}
+.col-form-label{
+    text-align: right;
+    font-size: 13px;
+}
+.infoSpan{
+    margin-left: 10px;
+    font-size: 12px;
+    color:gray;
+}
+
+/* **** ... yeni yazı ekle **** */
+
+
+
+
+
+/* **** KATEGORİ **** */
+.kategori-divleri-sol{
+    /*background-color: yellow;*/
+}
+.kategori-divleri-sag{
+    border: 1px solid white;
+    background-color: #e9ecef;
+    border-radius: 5px;
+
+}
+#kategoriEkle{
+    background-color: #e9ecef;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+#kategoriIslemler{
+    background-color: #e9ecef;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+
+.kategori-list{
+    font-size: 12px;
+}
+
+.updateCategoryDiv{
+    display:none;
+}
+
+
+/* **** ... kategori **** */
+
+
+
+
+
+/* **** AYARLAR **** */
+.settingForms{
+    padding: 10px;
+    border: 1px solid white;
+    background-color: #e9ecef;
+    border-radius: 5px;
+}
+
+#formRight{
+    display: none;
+}
+/* **** ... ayarlar **** */
+
+
+
+
+
