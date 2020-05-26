@@ -73,8 +73,8 @@ function counter($pageId){
     $tarayıcı = $bilgiler['name'];
     $sistem =  $bilgiler['platform'];
 
-    $visitorIp = "".mt_rand(0,255).".".mt_rand(0,255).".".mt_rand(0,255).".".mt_rand(0,255);
-//    $visitorIp = $_SERVER["REMOTE_ADDR"];
+//    $visitorIp = "".mt_rand(0,255).".".mt_rand(0,255).".".mt_rand(0,255).".".mt_rand(0,255);
+    $visitorIp = $_SERVER["REMOTE_ADDR"];
     $currentPage = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
     $pageId = htmlspecialchars(trim($pageId));
 
