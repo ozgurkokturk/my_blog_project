@@ -106,25 +106,23 @@ try {
 
 
 
-        // Hiç yazı yoksa counter tablosuyla inner olduğu için anasayfada
-        // yazı göstermeyecektir onun için sayfa tazeledeki işlemi yapıyoruz.
-        // tabi search esnasında hiçbir sonuç dönmezse de buraya girecek
-        // o sebeple arama yapılmamışsa sayfa tazeleme yapmasın
 
+        // content tablosunda veri varsa ve
+        // counter tablosunda veri yoksa bu durum inner join ile yapılan
+        // sorguların boş dönmesine sebep oluyor bunun  önüne geçkmek için
+        // counter tablosunu "sayfa_tazele.php"de yapay olarak dolduruyoruz
+        // bu durumda karşılaşmamak için bu kontrolü şart
         $content = "SELECT COUNT(id) as contentNumber FROM blog_content";
         $checkContent = $db->query($content,PDO::FETCH_OBJ)->fetch();
-//        echo $checkContent->contentNumber;
+        //echo $checkContent->contentNumber;
 
         $counter = "SELECT COUNT(id) as counterNumber FROM blog_counter";
         $checkCounter = $db->query($counter,PDO::FETCH_OBJ)->fetch();
-//        echo $checkCounter->counterNumber;
-
-
-
-
+        //echo $checkCounter->counterNumber;
 
 
         if ($posts->rowCount() <= 0){
+                //bahsi geçen kontrol burada yapılıyor!
             if (($arama == "yok") && ($checkContent->contentNumber > 0) && ($checkCounter->counterNumber <= 0)  ){
                 header("Location:usage_database/sayfa_tazele.php?durum=kontrol");
             }
@@ -174,11 +172,9 @@ try {
                   ORDER by count(blog_counter.content_id) DESC LIMIT 1";
         $popularPost = $db->prepare($query);
         $popularPost->execute();
+        $popularPost = $popularPost->fetch(PDO::FETCH_ASSOC);
+        return $popularPost;
 
-        if($popularPost->rowCount() > 0){
-            $popularPost = $popularPost->fetch(PDO::FETCH_ASSOC);
-            return $popularPost;
-        }
     }
 
 

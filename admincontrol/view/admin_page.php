@@ -30,7 +30,7 @@ if (!isset($_SESSION["kadi"])){
                        <span>
                            <?php
                                 $popularPost = popularPost($db,$_SESSION["id"]);
-                                // Eğer obje olarak gönderip de boş gelseydi okumaya çalışsaydık hata alaaktık
+                                // Eğer obje olarak gönderip de boş gelseydi okumaya çalışsaydık hata alacaktık
                                 // Ama FETCH_ASSOC'da hata vermiyor...
                                 echo $popularPost["title"] . " - (" . $popularPost["number"] . ")";
                            ?>
