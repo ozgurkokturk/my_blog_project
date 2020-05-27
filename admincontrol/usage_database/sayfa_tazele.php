@@ -49,7 +49,8 @@ if (!isset($_SESSION["kadi"])){
             }
 
             echo "<br> İçerikleri görüntüleyebilmen için yapay olarak veriler eklendi!<br>";
-            echo "<a href='../index.php'>Ana Sayfaya dönmek için Tıkla...</a>";
+            echo "<a href='../index.php'>Ana Sayfaya dönmek için Tıkla...</a><br><br>";
+            echo "<a href='../index.php?url=cikis'>Çıkış yapmak için...</a>";
 
         }
     }

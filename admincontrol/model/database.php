@@ -90,6 +90,8 @@ try {
         }
 
 
+
+
         $posts = $db->prepare($query);
 
         // array ile yapamadım int'ler sorun çıkardı galiba...
@@ -100,12 +102,30 @@ try {
         $posts->execute();
 
 
+
+
+
+
         // Hiç yazı yoksa counter tablosuyla inner olduğu için anasayfada
         // yazı göstermeyecektir onun için sayfa tazeledeki işlemi yapıyoruz.
         // tabi search esnasında hiçbir sonuç dönmezse de buraya girecek
         // o sebeple arama yapılmamışsa sayfa tazeleme yapmasın
+
+        $content = "SELECT COUNT(id) as contentNumber FROM blog_content";
+        $checkContent = $db->query($content,PDO::FETCH_OBJ)->fetch();
+//        echo $checkContent->contentNumber;
+
+        $counter = "SELECT COUNT(id) as counterNumber FROM blog_counter";
+        $checkCounter = $db->query($counter,PDO::FETCH_OBJ)->fetch();
+//        echo $checkCounter->counterNumber;
+
+
+
+
+
+
         if ($posts->rowCount() <= 0){
-            if ($arama == "yok"){
+            if (($arama == "yok") && ($checkContent->contentNumber > 0) && ($checkCounter->counterNumber <= 0)  ){
                 header("Location:usage_database/sayfa_tazele.php?durum=kontrol");
             }
             else{
@@ -122,6 +142,9 @@ try {
     }
 
 
+
+
+
     // Pagination için toplam kayıt sayısı
     function rowCount($db,$userId){
         $query = "SELECT COUNT(id) as sayi from blog_posts where user_id= $userId ";
@@ -136,6 +159,9 @@ try {
         $sumVisitor = $db->query($query)->rowCount();
         return $sumVisitor;
     }
+
+
+
 
     // Giriş yapan kişi bazında kişinin en çok okunan yazısı
     function popularPost($db, $userId){
