@@ -118,7 +118,7 @@ if (!isset($_SESSION["kadi"])){
                         <tr data-id="<?php echo $post->blogId; ?>">
                             <td class="firstTd"> <input type="checkbox" class="myCheckboxes"> </td>
                             <td><?php echo $post->blogId; ?></td>
-                            <td><b><?php echo $post->blogTitle; ?></b></td>
+                            <td><b> <a href="../index.php?url=sayfa&id=<?php echo $post->blogId; ?>" target='_blank' > <?php echo $post->blogTitle; ?> </a> </b></td>
                             <td><?php echo turkcetarih_formati('j F Y',$post->blogTarih); ?></td>
                             <td><?php echo $post->blogLabels; ?></td>
                             <td>
