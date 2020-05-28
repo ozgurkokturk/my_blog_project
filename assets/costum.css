@@ -238,6 +238,10 @@ nav{
 /* **** ... footer **** */
 
 
+
+
+
+
 /* ***** Tüm içerik yazıları İçin **** */
 h2.blog-title{
     font-size: 20px !important;
@@ -255,7 +259,7 @@ h2.blog-title{
 
 /* normal yazılar*/
 .content-text{
-    font-size: 18px;
+    font-size: 19px;
 }
 
 .content-labels{
@@ -310,7 +314,7 @@ pre{
 
     /* ***** ANASAYFADAKİ yazı ve tarihler İçin **** */
     .blog-headers{
-        font-size: 10px;
+        font-size: 12px;
     }
 
     /* ***** HAKKIMDA başlık **** */

@@ -10,7 +10,7 @@
     </ul>
 
     <section class="section-footer">
-        <span>Coding By KÖKTÜRK</span>
+        <span>Coding By <span style="color:#BD5D38; font-weight: 900;">KÖKTÜRK</span></span>
         <div class="footer-icons">
             <i class="fab fa-html5"></i>
             <i class="fab fa-css3-alt"></i>
