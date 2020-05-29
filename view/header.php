@@ -8,8 +8,8 @@
 
 
     <link rel="icon" href="assets/bg/siteIcon.png" type = "image/x-icon">
-    
-    <link rel="stylesheet" href="./assets/bootstrap.css">
+
+    <link rel="stylesheet" href="./assets/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/costum.css">
 
     <!--    cdn aktif-->
