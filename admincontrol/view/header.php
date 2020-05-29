@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="../assets/bootstrap.css">
     <link rel="stylesheet" href="admin_assets/admin.css">
 
-
-    <script src="admin_assets/fontawesome/js/all.js"></script>
+    <!--    cdn aktif-->
+    <script src="https://kit.fontawesome.com/19bd3d963f.js" crossorigin="anonymous"></script>
 
     <script src="admin_assets/js/jquery-3.4.1.min.js"></script>
     <script src="admin_assets/js/jquery.growl.js"></script>
@@ -24,7 +24,7 @@
     <script src="../ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
 
 
-    <!--istatistikler-->
+    <!-- highcharts istatistikler-->
     <script src="istatistik_sayfalari/code/highcharts.js"></script>
     <script src="istatistik_sayfalari/code/modules/exporting.js"></script>
     <script src="istatistik_sayfalari/code/themes/sand-signika.js"></script>

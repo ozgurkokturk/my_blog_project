@@ -5,12 +5,18 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <link rel="icon" href="assets/bg/siteIcon.png" type = "image/x-icon">
+    
     <link rel="stylesheet" href="./assets/bootstrap.css">
     <link rel="stylesheet" href="./assets/costum.css">
 
-    <script src="admincontrol/admin_assets/fontawesome/js/all.js"></script>
+    <!--    cdn aktif-->
+    <script src="https://kit.fontawesome.com/19bd3d963f.js" crossorigin="anonymous"></script>
+    <!--    <script src="fontawesome/19bd3d963f.js" crossorigin="anonymous"></script>-->
 
-    <link rel="icon" href="assets/bg/siteIcon.png" type = "image/x-icon">
+
 
     <link href="ckeditor/plugins/codesnippet/lib/highlight/styles/monokai_sublime.css" rel="stylesheet">
     <script src="ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
@@ -28,7 +34,6 @@
 <!--            <a href="index.php?url=hakkimda">Hakkımda</a>-->
 <!--        </div>-->
 <!--    </nav>-->
-
     <nav>
         <div class="container-fluid">
             <div class="row">
