@@ -194,7 +194,7 @@ try {
                     <div class="col-sm-2 icerik"> <span class="d-inline-block d-sm-none spanler">Tarih: </span> <?php echo $veri->creationDate; ?> </div>
                     <div class="col-sm-2 icerik"> <span class="d-inline-block d-sm-none spanler">Tarih: </span> <?php echo $veri->completionDate; ?> </div>
                     <div class="col-sm-2 icerik"> <span class="d-inline-block d-sm-none spanler">Öncelik: </span> <?php echo onemDerecesi($veri->priority); ?> </div>
-                    <div class="col-sm-2 icerik"> <span class="d-inline-block d-sm-none spanler">İşlemler: </span>   <a href="index.php?islem=done&id=<?php echo $veri->id; ?>" class="mr-2 text-success"><i class="fas fa-check"></i></a>  <a href="index.php?islem=sil&id=<?php echo $veri->id; ?>" class="text-danger"><i class="fas fa-times"></i></a></div>
+                    <div class="col-sm-2 icerik"> <span class="d-inline-block d-sm-none spanler">İşlemler: </span> <a href="index.php?islem=sil&id=<?php echo $veri->id; ?>" class="text-danger"><i class="fas fa-times"></i></a></div>
                 </div>
                 <hr>
             <?php endforeach; ?>
