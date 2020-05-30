@@ -8,22 +8,35 @@ try {
     $yapilanlar = $db->query($query1);
     $yapilanlar = $yapilanlar->fetchAll(PDO::FETCH_OBJ);
 
+
+
     $query2 = "SELECT * FROM todo_list where done = '1'";
     $yapilmislar = $db->query($query2);
     $yapilmislar = $yapilmislar->fetchAll(PDO::FETCH_OBJ);
 
 
     if (isset($_POST["yapilacak"],$_POST["derece"]) && $_POST["yapilacak"] != "" && $_POST["derece"] != ""){
-        print_r($_POST);
-        $yapilacak = $_POST["yapilacak"];
-        $derece = $_POST["derece"];
+
+        $yapilacak = htmlspecialchars(trim($_POST["yapilacak"]));
+        $derece = htmlspecialchars(trim($_POST["derece"]));
         $tarih = date("Y/m/d");
 
-        $query = "INSERT INTO todo_list (todoName, creationDate, priority, done) VALUES ('$yapilacak','$tarih' ,'$derece' , '0')";
-        $ekle = $db->prepare($query);
-        $ekle->execute();
-        header("Location:index.php");
+        // 20den fazla kayıt eklenmemesi için
+        $query1 = "SELECT COUNT(id) as number FROM todo_list";
+        $yapilanlar = $db->query($query1);
+        $yapilanlar = $yapilanlar->fetch(PDO::FETCH_COLUMN);
 
+        if($yapilanlar < 20){
+            $query = "INSERT INTO todo_list (todoName, creationDate, priority, done) VALUES ('$yapilacak','$tarih' ,'$derece' , '0')";
+            $ekle = $db->prepare($query);
+            $ekle->execute();
+            header("Location:index.php");
+        }
+        else{
+            echo "20 den fazla kayıt eklenemez!";
+            header("refresh:2;url=index.php");
+            die();
+        }
     }elseif (isset($_GET["islem"],$_GET["id"]) ){
         $id = htmlspecialchars(trim($_GET["id"]));
         $tarih = date("Y/m/d");
