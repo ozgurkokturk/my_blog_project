@@ -11,7 +11,7 @@
     http://localhost/myproject/index.php/asd
     mesela bu kod style dosyaları yüklenmediği için sayfa eksik görüntüleniyor
     -->
-    <base href="http://localhost/myproject/" />
+<!--    <base href="http://localhost/myproject/" />-->
 
 
     <link rel="icon" href="assets/bg/siteIcon.png" type = "image/x-icon">
