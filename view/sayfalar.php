@@ -9,7 +9,8 @@
         <div class="container mb-2">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
-                    <h1 class="content-title"><?php echo mb_convert_case($contents["title"] , MB_CASE_TITLE, "UTF-8")?></h1>
+<!--                    <h1 class="content-title">--><?php //echo mb_convert_case($contents["title"] , MB_CASE_TITLE, "UTF-8")?><!--</h1>-->
+                    <h1 class="content-title"><?php echo $contents["title"]; ?></h1>
 
                     <div class="row">
                         <div class="col-md-6 col-sm-12 sayfaBilgileri">
