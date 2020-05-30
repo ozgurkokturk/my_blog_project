@@ -4,13 +4,13 @@ try {
 
     $db = new PDO ('sqlite:mydatabase.db');
 
-    $query1 = "SELECT * FROM todo_list where done = '0'";
+    $query1 = "SELECT * FROM todo_list where done = '0' ORDER BY priority DESC";
     $yapilanlar = $db->query($query1);
     $yapilanlar = $yapilanlar->fetchAll(PDO::FETCH_OBJ);
 
 
 
-    $query2 = "SELECT * FROM todo_list where done = '1'";
+    $query2 = "SELECT * FROM todo_list where done = '1' ORDER BY completionDate DESC, priority DESC ";
     $yapilmislar = $db->query($query2);
     $yapilmislar = $yapilmislar->fetchAll(PDO::FETCH_OBJ);
 
