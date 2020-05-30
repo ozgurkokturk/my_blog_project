@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="306ae065-a959-45d7-befc-3acad060f966" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../19-highchart kullanımı/code/highcharts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19-highchart kullanımı/index.html" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1ccuWMR9hxmCElUeX2IcRmm6rZR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="306ae065-a959-45d7-befc-3acad060f966" name="Default Changelist" comment="" />
+      <created>1590840233293</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1590840233293</updated>
+      <workItem from="1590840234797" duration="4152000" />
+      <workItem from="1590845552833" duration="24000" />
+      <workItem from="1590854424347" duration="12719000" />
+      <workItem from="1590867290797" duration="4480000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="460" y="121" key="FileChooserDialogImpl" timestamp="1590845574319">
+      <screen x="0" y="0" width="1360" height="728" />
+    </state>
+    <state x="460" y="121" key="FileChooserDialogImpl/0.0.1360.728@0.0.1360.728" timestamp="1590845574319" />
+    <state width="196" height="457" key="HiddenNamespacesPopup" timestamp="1590854817149">
+      <screen x="0" y="0" width="1360" height="728" />
+    </state>
+    <state width="196" height="457" key="HiddenNamespacesPopup/0.0.1360.728@0.0.1360.728" timestamp="1590854817149" />
+    <state x="514" y="295" key="NewPhpFileDialog" timestamp="1590840242143">
+      <screen x="0" y="0" width="1360" height="728" />
+    </state>
+    <state x="514" y="295" key="NewPhpFileDialog/0.0.1360.728@0.0.1360.728" timestamp="1590840242143" />
+    <state x="343" y="49" key="search.everywhere.popup" timestamp="1590855915186">
+      <screen x="0" y="0" width="1360" height="728" />
+    </state>
+    <state x="343" y="49" key="search.everywhere.popup/0.0.1360.728@0.0.1360.728" timestamp="1590855915186" />
+  </component>
+</project>
