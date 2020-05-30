@@ -32,7 +32,10 @@ CKEDITOR.editorConfig = function( config ) {
 	config.extraPlugins = 'uploadwidget';
 	
 
-  config.filebrowserBrowseUrl = '../elFinder/elfinder-cke.html';
+	//Resim yüklemek için gereken ayar
+	//bu ayarı view içindeki php dosyasındaki scriptlerin içinde de yapabilirim
+	//fakat burada bir kere tanımlamak daha basit geldi
+	config.filebrowserBrowseUrl = '../elFinder/elfinder-cke.html';
 	
 
 

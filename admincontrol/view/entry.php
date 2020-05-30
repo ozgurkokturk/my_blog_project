@@ -45,7 +45,7 @@
                                 <img src="captcha.php">
                             </div>
                             <div class="form-group col-sm-8">
-                                <input type="text" name="control" class="form-control" placeholder="Güvenlik kodu" required>
+                                <input type="text" name="control" class="form-control" placeholder="Güvenlik kodu" required autocomplete="off">
                             </div>
                         </div>
                     </div>

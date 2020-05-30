@@ -43,20 +43,15 @@ if (!isset($_SESSION["kadi"])){
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label">İçerik:</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" name="textareaContent" id="textareaContent">
+                            <textarea class="form-control" name="textareaContent" id="textareaEditor">
                                 <?php echo $content->text; ?>
                             </textarea>
                                 <script>
-                                    // Replace the <textarea id="editor1"> with a CKEditor
-                                    // instance, using default configuration.
-                                    CKEDITOR.replace( 'textareaContent', {
-                                        customConfig: '',
+                                    CKEDITOR.replace( 'textareaEditor', {
                                         extraPlugins: 'codesnippet',
-                                        codeSnippet_theme: 'monokai_sublime',
-
-                                        filebrowserBrowseUrl: '../ckfinder/ckfinder.html',
-                                        filebrowserUploadUrl: '../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
-
+                                        codeSnippet_theme: 'monokai_sublime'
+                                        // filebrowserBrowseUrl : '../elFinder/elfinder-cke.html',
+                                        // uiColor : '#9AB8F3'
                                     });
                                 </script>
                         </div>
