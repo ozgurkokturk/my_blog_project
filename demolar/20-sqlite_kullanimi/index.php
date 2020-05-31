@@ -1,7 +1,7 @@
 <?php
 
 try {
-
+session_start();
     // Veritabanı bağlantısı
     $db = new PDO ('sqlite:mydatabase.db');
 
@@ -17,11 +17,15 @@ try {
     $yapilmislar = $yapilmislar->fetchAll(PDO::FETCH_OBJ);
 
 
+
     if (isset($_POST["yapilacak"],$_POST["derece"]) && $_POST["yapilacak"] != "" && $_POST["derece"] != ""){
 
-        $yapilacak = htmlspecialchars(trim($_POST["yapilacak"]));
+        $yapilacak = trim(($_POST["yapilacak"]));
         $derece = htmlspecialchars(trim($_POST["derece"]));
         $tarih = date("Y/m/d");
+
+//        echo $yapilacak;
+//        die();
 
         // 20den fazla kayıt eklenmemesi için...
         $query1 = "SELECT COUNT(id) as number FROM todo_list";
@@ -31,17 +35,37 @@ try {
         // Eğer toplam kayıt 20'den fazla ise yeni kayıt ekleme SQL sorgusunu çalıştırma.
         if($yapilanlar < 20){
 
-            $query = "INSERT INTO todo_list (todoName, creationDate, priority, done) VALUES ('$yapilacak','$tarih' ,'$derece' , '0')";
-            $ekle = $db->prepare($query);
+
+            // Eğer son eklnen kayıt ile şimdi eklenen kayıt arasında 5dk varsa mevcutları sil ve işleme devam et
+            if(isset($_SESSION["sonZaman"])){
+                if( (time()-$_SESSION["sonZaman"]) > (60*5) ){
+                    $query = "DELETE FROM todo_list";
+                    $hepsiniSil = $db->prepare($query);
+                    $hepsiniSil->execute();
+                    $_SESSION["sonZaman"] = time();
+                }
+            }
+            else{
+                $_SESSION["sonZaman"] = time();
+            }
+
+
+            $query3 = "INSERT INTO todo_list (todoName, creationDate, priority, done) VALUES ('$yapilacak','$tarih' ,'$derece', '0')";
+            $ekle = $db->prepare($query3);
             $ekle->execute();
             header("Location:index.php");
+
         }
         else{
-            echo "20 den fazla kayıt eklenemez!";
-            header("refresh:2;url=index.php");
+            echo "20 den fazla kayıt eklenemez! <br> Bazı kayıtları silin <br><br> Geri yönlendiriliyorsunuz...";
+            header("refresh:4;url=index.php");
             die();
         }
-    }elseif (isset($_GET["islem"],$_GET["id"]) ){
+
+
+    }
+    elseif (isset($_GET["islem"],$_GET["id"]) ){
+
         $id = htmlspecialchars(trim($_GET["id"]));
         $tarih = date("Y/m/d");
 
@@ -62,6 +86,27 @@ try {
         header("Location:index.php");
 
     }
+
+
+
+
+    /*
+     * Zaman Farklarını göster
+     */
+    echo "<b>Şu anki zaman:</b> ".date('d.m.Y H:i:s',time()+60*60*3);
+    if (isset($_SESSION["sonZaman"])){
+        echo "<br> <b>Son verinin eklendiği zamanı:</b> " . date('d.m.Y H:i:s',$_SESSION["sonZaman"]+60*60*3) . "<br>";
+    }else{
+        echo "<br>son zaman yok";
+    }
+    echo "<b>Zaman farkı:</b> " . date('H:i:s',(time()-$_SESSION["sonZaman"]));
+    echo "<br> <small>Eğer zaman farkı 5 dakikadan büyük ise mevcut kayıtlar silinir </small>";
+//    echo "<br> unix zaman damgası farkı: " . (time()-$_SESSION["sonZaman"]) . "<br>";
+
+
+
+
+
 
 
     // Veritabanında dereceler 1, 2, 3 olarak kayıtlı fakat böyle göstermek yerine "Düşük, "Orta", "Yüksek" şeklinde
