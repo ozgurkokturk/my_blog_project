@@ -2,14 +2,16 @@
 
 try {
 
+    // Veritabanı bağlantısı
     $db = new PDO ('sqlite:mydatabase.db');
 
+    // Yapılacaklar bölümü için SELECT sorgusu...
     $query1 = "SELECT * FROM todo_list where done = '0' ORDER BY priority DESC";
     $yapilanlar = $db->query($query1);
     $yapilanlar = $yapilanlar->fetchAll(PDO::FETCH_OBJ);
 
 
-
+    // Yapılanlar bölümü için SELECT sorgusu...
     $query2 = "SELECT * FROM todo_list where done = '1' ORDER BY completionDate DESC, priority DESC ";
     $yapilmislar = $db->query($query2);
     $yapilmislar = $yapilmislar->fetchAll(PDO::FETCH_OBJ);
@@ -21,12 +23,14 @@ try {
         $derece = htmlspecialchars(trim($_POST["derece"]));
         $tarih = date("Y/m/d");
 
-        // 20den fazla kayıt eklenmemesi için
+        // 20den fazla kayıt eklenmemesi için...
         $query1 = "SELECT COUNT(id) as number FROM todo_list";
         $yapilanlar = $db->query($query1);
         $yapilanlar = $yapilanlar->fetch(PDO::FETCH_COLUMN);
 
+        // Eğer toplam kayıt 20'den fazla ise yeni kayıt ekleme SQL sorgusunu çalıştırma.
         if($yapilanlar < 20){
+
             $query = "INSERT INTO todo_list (todoName, creationDate, priority, done) VALUES ('$yapilacak','$tarih' ,'$derece' , '0')";
             $ekle = $db->prepare($query);
             $ekle->execute();
@@ -41,25 +45,27 @@ try {
         $id = htmlspecialchars(trim($_GET["id"]));
         $tarih = date("Y/m/d");
 
+        // Eğer islem=done şeklinde GET parametresi gelirse veritabanında UPDATE sorugusunu değişkene at.
         if ($_GET["islem"] == "done"){
            $query = "UPDATE todo_list SET done = '1' , completionDate = '$tarih' where id = $id";
         }
+        // Eğer islem=sil şeklinde GET parametresi gelirse veritabanında DELETE sorgusunu değişkene at.
         elseif ($_GET["islem"] == "sil"){
             $query = "DELETE FROM todo_list where id = $id";
         }
 
+        // if else'ler sonucunda gelen query değişkeninin içindeki sorguyu çalıştır.
         $islem = $db->prepare($query);
         $islem->execute();
+
+        // sayfayı yenile yeni kayıt görünsün.
         header("Location:index.php");
 
     }
 
 
-
-
-
-
-
+    // Veritabanında dereceler 1, 2, 3 olarak kayıtlı fakat böyle göstermek yerine "Düşük, "Orta", "Yüksek" şeklinde
+    // göstermek için böyle bir metodu kullandım.
     $onemDereceleri = array(
         "1" => "Düşük",
         "2" => "Orta",
@@ -67,6 +73,8 @@ try {
     );
 
     function onemDerecesi($deger){
+        // fonksiyonun dışında yer alan $onemDereceleri dizisini fonksiyonun içinde de kullanabilmek için
+        // global olarak tanımladık.
         global $onemDereceleri;
         if(array_key_exists($deger, $onemDereceleri)){
             return $onemDereceleri[$deger];
@@ -75,10 +83,6 @@ try {
         }
         print_r($onemDereceleri);
     }
-
-
-
-
 
 
 }catch (PDOException $e){
@@ -95,10 +99,9 @@ try {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>TodoList</title>
+    <title>TodoList Projesi</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-
     <script src="https://kit.fontawesome.com/19bd3d963f.js" crossorigin="anonymous"></script>
 
     <style>
@@ -114,12 +117,13 @@ try {
             width: 60px !important;
         }
         .yapilacak:after{
+            /*iki div arası gri çizgi için*/
             content: " ";
             background-color: #ddd;
             position: absolute;
             width: 1px;
             height: 100%;
-            top: 10px;
+            top: 0;
             left: 100%;
             display: inline-block;
 
@@ -127,9 +131,10 @@ try {
         .yapilanlar{
 
         }
-
     </style>
+
 </head>
+
 <body>
 <h1 class="text-center mt-2">Todo List</h1>
 <div class="container-fluid mt-5">
@@ -140,7 +145,7 @@ try {
                 <div class="form-row">
 
                     <div class="form-group col-md-6">
-                        <input type="text" class="form-control" name="yapilacak">
+                        <input type="text" class="form-control" name="yapilacak" placeholder="Bir yapılacak gir ...">
                     </div>
 
                     <div class="form-group col-md-3">
@@ -163,6 +168,8 @@ try {
 
     <div class="row mt-4">
 
+
+        <!-- Yapılacaklar Bölümü-->
         <div class="col-lg-6 yapilacak">
             <h4 class="text-center mb-4">Yapılacaklar</h4>
             <div class="row">
@@ -173,7 +180,9 @@ try {
                 <div class="col-sm-2 d-none d-sm-block baslik">Öncelik</div>
                 <div class="col-sm-2 d-none d-sm-block baslik">İşlemler</div>
             </div>
+
             <hr>
+
             <?php foreach ($yapilanlar as $key => $veri ): ?>
                 <div class="row">
                     <div class="col-sm-1 icerik "> <span class="d-inline-block d-sm-none spanler">No: </span> <span class="font-weight-bolder"> <?php echo ($key + 1); ?></span> </div>
@@ -189,6 +198,8 @@ try {
 
 
 
+
+        <!-- Yapılanlar Bölümü-->
         <div class="col-lg-6 yapilanlar">
             <h4 class="text-center mb-4">Yapılanlar</h4>
             <div class="row ">
@@ -197,9 +208,11 @@ try {
                 <div class="col-sm-2 d-none d-sm-block baslik">Başlangıç</div>
                 <div class="col-sm-2 d-none d-sm-block baslik">Bitiş</div>
                 <div class="col-sm-2 d-none d-sm-block baslik">Öncelik</div>
-                <div class="col-sm-2 d-none d-sm-block baslik">İşlemler</div>
+                <div class="col-sm-2 d-none d-sm-block baslik">İşlem</div>
             </div>
+
             <hr>
+
             <?php foreach ($yapilmislar as $key => $veri ): ?>
                 <div class="row text-success">
                     <div class="col-sm-1 icerik"> <span class="d-inline-block d-sm-none spanler">No: </span> <span class="font-weight-bolder"> <?php echo ($key + 1); ?></span> </div>
