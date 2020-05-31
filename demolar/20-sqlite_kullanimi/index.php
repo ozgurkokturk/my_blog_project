@@ -38,7 +38,7 @@ session_start();
 
             // Eğer son eklnen kayıt ile şimdi eklenen kayıt arasında 5dk varsa mevcutları sil ve işleme devam et
             if(isset($_SESSION["sonZaman"])){
-                if( (time()-$_SESSION["sonZaman"]) > (60*5) ){
+                if( (time()-$_SESSION["sonZaman"]) > (60*1) ){
                     $query = "DELETE FROM todo_list";
                     $hepsiniSil = $db->prepare($query);
                     $hepsiniSil->execute();
@@ -46,6 +46,7 @@ session_start();
                 }
             }
             else{
+                session_destroy($_SESSION["sonZaman"]);
                 $_SESSION["sonZaman"] = time();
             }
 
@@ -93,15 +94,18 @@ session_start();
     /*
      * Zaman Farklarını göster
      */
-    echo "<b>Şu anki zaman:</b> ".date('d.m.Y H:i:s',time()+60*60*3);
+    echo "<b>Şu anki zaman:</b> ".date('d.m.Y H:i:s',time());
     if (isset($_SESSION["sonZaman"])){
-        echo "<br> <b>Son verinin eklendiği zamanı:</b> " . date('d.m.Y H:i:s',$_SESSION["sonZaman"]+60*60*3) . "<br>";
+        echo "<br> <b>Son verinin eklendiği zamanı:</b> " . date('d.m.Y H:i:s',$_SESSION["sonZaman"]) . "<br>";
+
+        echo "<b>Zaman farkı:</b> " . date('H:i:s',(time()-$_SESSION["sonZaman"]));
+        echo "<br> <small>Eğer zaman farkı 5 dakikadan büyük ise mevcut kayıtlar silinir </small>";
+//    echo "<br> unix zaman damgası farkı: " . (time()-$_SESSION["sonZaman"]) . "<br>";
+
     }else{
         echo "<br>son zaman yok";
     }
-    echo "<b>Zaman farkı:</b> " . date('H:i:s',(time()-$_SESSION["sonZaman"]));
-    echo "<br> <small>Eğer zaman farkı 5 dakikadan büyük ise mevcut kayıtlar silinir </small>";
-//    echo "<br> unix zaman damgası farkı: " . (time()-$_SESSION["sonZaman"]) . "<br>";
+
 
 
 
