@@ -12,9 +12,12 @@ try {
 
 
     // Dosya izinleri
-    chmod("mydatabase.db", 0770);
-    chmod("zaman.txt", 0770);
-//    exec("chmod 0770 *");
+    //exec("find /opt/lampp/htdocs/demolar/20-sqlite_kullanimi -type f -exec chmod 644 {} \;");
+    exec("find /opt/lampp/htdocs/demolar/20-sqlite_kullanimi -type d -exec chmod 777 {} \;");
+
+    chmod("mydatabase.db", 0777);
+    chmod("zaman.txt", 0777);
+
 
 
     function zamanAyarla(){
