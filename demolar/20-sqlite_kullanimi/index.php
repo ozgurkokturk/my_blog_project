@@ -12,7 +12,8 @@ try {
 
 
     // Dosya izinleri
-    chmod("mydatabase.db", 0777);
+    chmod("mydatabase.db", 0770);
+//    exec("cmod 0777 *");
 
 
     function zamanAyarla(){
@@ -27,7 +28,7 @@ try {
         fwrite($dosya, $yazilacaklar);
 
         $icerik = file('zaman.txt');
-        fclose();
+        fclose($dosya);
     }
 
     //Dosya yoksa oluştur ve verileri çek
@@ -51,7 +52,7 @@ try {
 
     // Eğer son eklenen kayıt ile şimdi eklenen kayıt arasında 5dk varsa mevcutları sil ve işleme devam et
     // 60*5 = 300 saniye 5dk olarak ayarlandı
-    if( (time()-$tarihUnix) > (60*1) ){
+    if( (time()-$tarihUnix) > (60*5) ){
         $query = "DELETE FROM todo_list";
         $hepsiniSil = $db->prepare($query);
         $hepsiniSil->execute();
