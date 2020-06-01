@@ -18,7 +18,7 @@ if (!isset($_SESSION["kadi"])){
             <!--      Üstteki Bilgiler     -->
            <div id="headerInfo">
                <ul id="headerInfoUl">
-                   <li class="headerInfoLi">Siteye Gelen Toplam Ziyaretçi Sayısı:
+                   <li class="headerInfoLi">Siteye Gelen Tekil Ziyaretçi Sayısı:
                        <span>
                            <?php
                                 echo $sumVisitor = sumVisitor($db);
