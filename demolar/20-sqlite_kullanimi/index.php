@@ -1,16 +1,65 @@
 <?php
 
 try {
-    // Sesssion kullanacağımız için
-    session_start();
 
-    
+
     // Veritabanı bağlantısı
     $db = new PDO ('sqlite:mydatabase.db');
 
 
-    // zaman dilimini seçiyoruz
+    // Zaman dilimini seçiyoruz
     date_default_timezone_set('Europe/Istanbul');
+
+
+    // Dosya izinleri
+    chmod("mydatabase.db", 0777);
+
+
+    function zamanAyarla(){
+        $dosya = fopen("zaman.txt","w+");
+
+        $tarihNormal = new DateTime('now');
+        $tarihNormal =  $tarihNormal->format('Y-m-d H:i:s');
+
+        $tarihUnix = time();
+
+        $yazilacaklar = $tarihUnix . "\n" . $tarihNormal ;
+        fwrite($dosya, $yazilacaklar);
+
+        $icerik = file('zaman.txt');
+        fclose();
+    }
+
+    //Dosya yoksa oluştur ve verileri çek
+    if(file_exists('zaman.txt')){
+
+        if(!filesize('zaman.txt')){
+            //echo "dosya boş";
+            zamanAyarla();
+        }
+    }
+    else{
+        //echo "dosya yok";
+        zamanAyarla();
+    }
+
+    // Dosyadan değişkenlere aktarım
+    $degerler = file('zaman.txt');
+    $tarihUnix = $degerler[0];
+    $tarihNormal = $degerler[1];
+
+
+    // Eğer son eklenen kayıt ile şimdi eklenen kayıt arasında 5dk varsa mevcutları sil ve işleme devam et
+    // 60*5 = 300 saniye 5dk olarak ayarlandı
+    if( (time()-$tarihUnix) > (60*1) ){
+        $query = "DELETE FROM todo_list";
+        $hepsiniSil = $db->prepare($query);
+        $hepsiniSil->execute();
+        zamanAyarla();
+        header("Refresh:0");
+        die();
+    }
+
 
 
 
@@ -39,32 +88,12 @@ try {
         $yapilanlar = $db->query($query1);
         $yapilanlar = $yapilanlar->fetch(PDO::FETCH_COLUMN);
 
-        // Eğer toplam kayıt 20'den fazla ise yeni kayıt ekleme SQL sorgusunu çalıştırma.
+        // Eğer toplam kayıt 20'den fazla ise yeni kayıt ekleme SQL sorgusunu çalıştırma!
         if($yapilanlar < 20){
-
-
-            // Eğer son eklnen kayıt ile şimdi eklenen kayıt arasında 5dk varsa mevcutları sil ve işleme devam et
-            if(isset($_SESSION["sonKayitUnix"])){
-                    // 60*5= 300 saniye 5dk olarak ayarlandı
-                if( (time()-$_SESSION["sonKayitUnix"]) > (60*5) ){
-                    $query = "DELETE FROM todo_list";
-                    $hepsiniSil = $db->prepare($query);
-                    $hepsiniSil->execute();
-
-                    $_SESSION["sonKayitUnix"] = time();
-                    $_SESSION["sonKayitTarihi"] = new DateTime('now');
-                }
-            }
-            else{
-                $_SESSION["sonKayitUnix"] = time();
-                $_SESSION["sonKayitTarihi"] = new DateTime('now');
-            }
-
             $query3 = "INSERT INTO todo_list (todoName, creationDate, priority, done) VALUES ('$yapilacak','$tarih' ,'$derece', '0')";
             $ekle = $db->prepare($query3);
             $ekle->execute();
             header("Location:index.php");
-
         }
         else{
             echo "20 den fazla kayıt eklenemez! <br> Bazı kayıtları silin <br><br> Geri yönlendiriliyorsunuz...";
@@ -79,11 +108,11 @@ try {
         $id = htmlspecialchars(trim($_GET["id"]));
         $tarih = date("Y/m/d");
 
-        // Eğer islem=done şeklinde GET parametresi gelirse veritabanında UPDATE sorugusunu değişkene at.
+        // Eğer islem = done şeklinde GET parametresi gelirse veritabanında UPDATE sorugusunu değişkene at.
         if ($_GET["islem"] == "done"){
            $query = "UPDATE todo_list SET done = '1' , completionDate = '$tarih' where id = $id";
         }
-        // Eğer islem=sil şeklinde GET parametresi gelirse veritabanında DELETE sorgusunu değişkene at.
+        // Eğer islem = sil şeklinde GET parametresi gelirse veritabanında DELETE sorgusunu değişkene at.
         elseif ($_GET["islem"] == "sil"){
             $query = "DELETE FROM todo_list where id = $id";
         }
@@ -92,28 +121,27 @@ try {
         $islem = $db->prepare($query);
         $islem->execute();
 
-        // sayfayı yenile yeni kayıt görünsün.
+        // sayfayı yenile yeni kayıt sayfada görünsün.
         header("Location:index.php");
 
     }
 
 
-
-
     /*
-     * Zaman Farklarını göster
-     */
-    if (isset($_SESSION["sonKayitUnix"])){
-
+    * Zaman Farklarını göster
+    */
+    if (isset($tarihUnix) && isset($tarihNormal)){
         $tarih = new DateTime('now');
         echo "<b>Şu anki Tarih: </b>" . $tarih->format('Y-m-d H:i:s');
 
         echo "<br>";
-        echo "<b>Son Kayıt Tarihi: </b>" . $_SESSION["sonKayitTarihi"]->format('Y-m-d H:i:s');
+
+        $tarihNormal = new DateTime($tarihNormal);
+        echo "<b>Son Kayıt Tarihi: </b>" . $tarihNormal->format('Y-m-d H:i:s');
 
 
         // Tarihler arası farkı alıyoruz array olarak
-        $fark = $tarih->diff($_SESSION["sonKayitTarihi"]);
+        $fark = $tarih->diff($tarihNormal);
 
         // Aradaki farkı yıl ay gün saat dikika saniye şeklinde DateTime sınıfının format fonksiyonu sayesinde kullanıyoruz.
         $sayac = $fark->format('%y yıl %m ay %d gün %h saat %i dakika %s saniye');
@@ -125,17 +153,19 @@ try {
         );
         echo "<br>";
         echo $sayac;
-    }else{
-        echo "<br> Mevcut kayıt yok!";
+
+        echo "<br> <small> Her 5 dakikada bir kayıtlar otomatik olarak silinir.</small>";
     }
 
-    echo "<br> <small> Son kayıt tarihinden itibaren 5 dakika geçmiş ise ve yeni kayıt eklenirse tüm kayıtlar silinir!</small>";
+
+
+
 
 
 
     /*
      * Veritabanında dereceler 1, 2, 3 olarak kayıtlı fakat böyle göstermek yerine "Düşük, "Orta", "Yüksek" şeklinde
-     * göstermek için böyle bir metodu kullandım.
+     * göstermek için böyle bir metod kullandım.
      */
     $onemDereceleri = array(
         "1" => "Düşük",
@@ -146,12 +176,12 @@ try {
         // fonksiyonun dışında yer alan $onemDereceleri dizisini fonksiyonun içinde de kullanabilmek için
         // global olarak tanımladık.
         global $onemDereceleri;
+
         if(array_key_exists($deger, $onemDereceleri)){
             return $onemDereceleri[$deger];
         }else{
             return null;
         }
-        print_r($onemDereceleri);
     }
 
 
