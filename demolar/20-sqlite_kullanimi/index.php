@@ -9,14 +9,7 @@ try {
 
     // Zaman dilimini seçiyoruz
     date_default_timezone_set('Europe/Istanbul');
-
-
-    // Dosya izinleri
-//    exec ("find /opt/lampp/htdocs/demolar/20-sqlite_kullanimi -type d -exec chmod 0750 {} +");
-
-    exec("sudo chmod 0777 *");
-
-
+    
 
     function zamanAyarla(){
         $dosya = fopen("zaman.txt","w+");
