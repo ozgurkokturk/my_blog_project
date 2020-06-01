@@ -1,9 +1,19 @@
 <?php
 
 try {
-session_start();
+    // Sesssion kullanacağımız için
+    session_start();
+
+    
     // Veritabanı bağlantısı
     $db = new PDO ('sqlite:mydatabase.db');
+
+
+    // zaman dilimini seçiyoruz
+    date_default_timezone_set('Europe/Istanbul');
+
+
+
 
     // Yapılacaklar bölümü için SELECT sorgusu...
     $query1 = "SELECT * FROM todo_list where done = '0' ORDER BY priority DESC";
@@ -24,9 +34,6 @@ session_start();
         $derece = htmlspecialchars(trim($_POST["derece"]));
         $tarih = date("Y/m/d");
 
-//        echo $yapilacak;
-//        die();
-
         // 20den fazla kayıt eklenmemesi için...
         $query1 = "SELECT COUNT(id) as number FROM todo_list";
         $yapilanlar = $db->query($query1);
@@ -37,19 +44,21 @@ session_start();
 
 
             // Eğer son eklnen kayıt ile şimdi eklenen kayıt arasında 5dk varsa mevcutları sil ve işleme devam et
-            if(isset($_SESSION["sonZaman"])){
-                if( (time()-$_SESSION["sonZaman"]) > (60*5) ){
+            if(isset($_SESSION["sonKayitUnix"])){
+                    // 60*5= 300 saniye 5dk olarak ayarlandı
+                if( (time()-$_SESSION["sonKayitUnix"]) > (60*5) ){
                     $query = "DELETE FROM todo_list";
                     $hepsiniSil = $db->prepare($query);
                     $hepsiniSil->execute();
-                    $_SESSION["sonZaman"] = time();
+
+                    $_SESSION["sonKayitUnix"] = time();
+                    $_SESSION["sonKayitTarihi"] = new DateTime('now');
                 }
             }
             else{
-                session_destroy($_SESSION["sonZaman"]);
-                $_SESSION["sonZaman"] = time();
+                $_SESSION["sonKayitUnix"] = time();
+                $_SESSION["sonKayitTarihi"] = new DateTime('now');
             }
-
 
             $query3 = "INSERT INTO todo_list (todoName, creationDate, priority, done) VALUES ('$yapilacak','$tarih' ,'$derece', '0')";
             $ekle = $db->prepare($query3);
@@ -94,33 +103,45 @@ session_start();
     /*
      * Zaman Farklarını göster
      */
-    echo "<b>Şu anki zaman:</b> ".date('d.m.Y H:i:s',time());
-    if (isset($_SESSION["sonZaman"])){
-        echo "<br> <b>Son verinin eklendiği zamanı:</b> " . date('d.m.Y H:i:s',$_SESSION["sonZaman"]) . "<br>";
+    if (isset($_SESSION["sonKayitUnix"])){
 
-        echo "<b>Zaman farkı:</b> " . date('H:i:s',(time()-$_SESSION["sonZaman"]));
-        echo "<br> <small>Eğer zaman farkı 5 dakikadan büyük ise yeni veri eklendiğinde mevcut kayıtlar silinir </small>";
-//    echo "<br> unix zaman damgası farkı: " . (time()-$_SESSION["sonZaman"]) . "<br>";
+        $tarih = new DateTime('now');
+        echo "<b>Şu anki Tarih: </b>" . $tarih->format('Y-m-d H:i:s');
 
+        echo "<br>";
+        echo "<b>Son Kayıt Tarihi: </b>" . $_SESSION["sonKayitTarihi"]->format('Y-m-d H:i:s');
+
+
+        // Tarihler arası farkı alıyoruz array olarak
+        $fark = $tarih->diff($_SESSION["sonKayitTarihi"]);
+
+        // Aradaki farkı yıl ay gün saat dikika saniye şeklinde DateTime sınıfının format fonksiyonu sayesinde kullanıyoruz.
+        $sayac = $fark->format('%y yıl %m ay %d gün %h saat %i dakika %s saniye');
+        // 0 yıl, 0 ay falan yazıyorsa bunları siliyoruz. 'boşluk sıfır ay' olduğuna dikkat et!
+        $sayac = str_replace(
+            ['0 yıl', ' 0 ay', ' 0 gün', ' 0 saat', ' 0 dakika'],
+            "",
+            $sayac
+        );
+        echo "<br>";
+        echo $sayac;
     }else{
-        echo "<br>son zaman yok";
+        echo "<br> Mevcut kayıt yok!";
     }
 
+    echo "<br> <small> Son kayıt tarihinden itibaren 5 dakika geçmiş ise ve yeni kayıt eklenirse tüm kayıtlar silinir!</small>";
 
 
 
-
-
-
-
-    // Veritabanında dereceler 1, 2, 3 olarak kayıtlı fakat böyle göstermek yerine "Düşük, "Orta", "Yüksek" şeklinde
-    // göstermek için böyle bir metodu kullandım.
+    /*
+     * Veritabanında dereceler 1, 2, 3 olarak kayıtlı fakat böyle göstermek yerine "Düşük, "Orta", "Yüksek" şeklinde
+     * göstermek için böyle bir metodu kullandım.
+     */
     $onemDereceleri = array(
         "1" => "Düşük",
         "2" => "Orta",
         "3" => "Yüksek"
     );
-
     function onemDerecesi($deger){
         // fonksiyonun dışında yer alan $onemDereceleri dizisini fonksiyonun içinde de kullanabilmek için
         // global olarak tanımladık.
