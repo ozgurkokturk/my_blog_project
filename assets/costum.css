@@ -275,7 +275,7 @@ h2.blog-title{
 /*Kod görüntüsü için bu iki ayar*/
 /*white-space: pre-warp telefondan girince bozulan ekranı düzeltmek için*/
 code{
-    font-size: 16px !important;
+    font-size: 15px !important;
 }
 pre{
     white-space: pre-wrap;
