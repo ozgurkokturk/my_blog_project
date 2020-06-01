@@ -12,11 +12,9 @@ try {
 
 
     // Dosya izinleri
-    //exec("find /opt/lampp/htdocs/demolar/20-sqlite_kullanimi -type f -exec chmod 644 {} \;");
-    exec("find /opt/lampp/htdocs/demolar/20-sqlite_kullanimi -type d -exec chmod 777 {} \;");
+//    exec ("find /opt/lampp/htdocs/demolar/20-sqlite_kullanimi -type d -exec chmod 0750 {} +");
 
-    chmod("mydatabase.db", 0777);
-    chmod("zaman.txt", 0777);
+    exec("sudo chmod 0777 *");
 
 
 
