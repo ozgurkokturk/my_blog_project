@@ -23,7 +23,7 @@ if (!isset($_SESSION["kadi"])){
                     </div>
 
                     <div class="form-group">
-                        <label for="" class="col-sm-2">Kullanıcı Id</label>
+                        <label for="" class="col-sm-2">Kullanıcı ID</label>
                         <div class="col-sm-2">
                             <input type="text" class="form-control form-control-sm" name="userId" value="<?php echo $userInfo->id; ?>" readonly>
                         </div>
