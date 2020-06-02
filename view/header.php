@@ -6,12 +6,12 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!--
-    <base href="http://localhost/myproject/" /> olmazsa
-    http://localhost/myproject/index.php/asd
-    mesela bu kod style dosyaları yüklenmediği için sayfa eksik görüntüleniyor
-    -->
-<!--    <base href="http://localhost/myproject/" />-->
+    <meta name="description" content="Web programalama">
+    <meta name="keywords" content="HTML,CSS,JavaScript,Jquery,Php,SQL,SQLite,MySQL,Linux,blog,blog yapımı,">
+    <meta name="author" content="Özgür Sina KÖKTÜRK" />
+    <title>Repository & Notes</title>
+
+
 
 
     <link rel="icon" href="assets/bg/siteIcon.png" type = "image/x-icon">
@@ -29,7 +29,7 @@
     <script src="ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
 
 
-    <title>Notes</title>
+
 </head>
 <body>
 
