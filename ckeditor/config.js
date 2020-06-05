@@ -36,7 +36,7 @@ CKEDITOR.editorConfig = function( config ) {
 	//bu ayarı view içindeki php dosyasındaki scriptlerin içinde de yapabilirim
 	//fakat burada bir kere tanımlamak daha basit geldi
 	config.filebrowserBrowseUrl = '../elFinder/elfinder-cke.html';
-	
+	config.filebrowserUploadUrl = '../elFinder/elfinder-cke.html';
 
 
 
