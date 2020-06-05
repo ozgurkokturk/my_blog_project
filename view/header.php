@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="tr">
 <head>
+    
+    <title>Özgür Sina KÖKTÜRK</title>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <meta name="description" content="Web programalama">
-    <meta name="keywords" content="HTML,CSS,JavaScript,Jquery,Php,SQL,SQLite,MySQL,Linux,blog,blog yapımı,">
-    <meta name="author" content="Özgür Sina KÖKTÜRK" />
-    <title>Repository & Notes</title>
+    <meta name="author" content="Özgür Sina KÖKTÜRK">
+    <meta name="description" content="web programlama ve yazılım hakkındaki blog yazılarım.">
 
 
 
@@ -32,14 +32,6 @@
 
 </head>
 <body>
-
-<!--    <nav>-->
-<!--        <div class=" nav-link">-->
-<!--            <a href="index.php"><span style="font-size: 26px;"><i class="fas fa-code"></i></span></a>-->
-<!--            <a href="index.php">Home</a>-->
-<!--            <a href="index.php?url=hakkimda">Hakkımda</a>-->
-<!--        </div>-->
-<!--    </nav>-->
     <nav>
         <div class="container-fluid">
             <div class="row">
