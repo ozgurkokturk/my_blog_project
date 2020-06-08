@@ -17,7 +17,10 @@ try {
     }
 
     function showCategoryCount($db){
-        $query = "SELECT blog_category.title, COUNT(blog_content.category_id) as categoryCount  , blog_content.category_id as categoryId FROM blog_content INNER JOIN blog_category ON blog_content.category_id = blog_category.id WHERE blog_content.visibility=1 GROUP BY blog_content.category_id";
+        $query = "SELECT blog_category.title, COUNT(blog_content.category_id) as categoryCount  , blog_content.category_id as categoryId 
+                    FROM blog_content INNER JOIN blog_category ON blog_content.category_id = blog_category.id WHERE blog_content.visibility=1 
+                    GROUP BY blog_content.category_id
+                    ORDER BY blog_category.title ASC";
         $counts = $db->query($query,PDO::FETCH_OBJ)->fetchAll();
         return $counts;
     }
