@@ -43,6 +43,7 @@
                         <span class="mr-2"><a href="index.php">Blog</a></span>
                         <a href="index.php?url=hakkimda">Hakkımda</a>
                 </div>
+
             </div>
         </div>
     </nav>
