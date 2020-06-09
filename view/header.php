@@ -3,6 +3,9 @@
 <head>
     
     <title>Özgür Sina KÖKTÜRK</title>
+
+    <meta name="google-site-verification" content="UnhWhjXt_78BYMLA8CTddKERY7fJgHr0FH60edFZv70" />
+
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
