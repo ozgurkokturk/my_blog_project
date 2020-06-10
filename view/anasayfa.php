@@ -17,7 +17,7 @@
 
             <div class="col-lg-8 offset-lg-2">
                 <h2 class="blog-title"><?php echo mb_convert_case($count->title, MB_CASE_TITLE, "UTF-8"); ?> (<?php echo $count->categoryCount; ?>)</h2>
-                <div class="blog-list container-fluid"">
+                <div class="blog-list container-fluid">
 
                     <?php
                         $pages = showContent($db, $count->categoryId);
