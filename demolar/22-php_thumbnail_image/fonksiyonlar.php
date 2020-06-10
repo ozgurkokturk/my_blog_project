@@ -21,6 +21,7 @@ function ozelKarakterTemizle($veri)
     // bütün içeriğin sadece a-z arasında harflerden veya ramaklaradan oluşan kısımlarını al ve bir de nokta ise al
     $veri =  preg_replace('/[^a-z0-9-.\-]/', '-',$veri);
 
+
     // Düz çizgi ve artı ne kadar çok olursa olsun sadece bir düz çizgiye dönüştür
     return preg_replace('/-+/', '-', $veri);
 }

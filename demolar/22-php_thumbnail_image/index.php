@@ -12,6 +12,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>    <script src="ajax_file_uploader.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+
 </head>
 <body>
 
@@ -20,11 +22,20 @@
 <h5>Fotoğrafı seçip genişlik ve yükseklik belirtin</h5>
 <small> Sadece jpeg formatı kabul edilir</small>
 <hr />
-<form action="upload.php" method="post" name="myForm" enctype="multipart/form-data">
-    <input type="text" name="dosyaAdi" placeholder="Dosyanın yeni adı" required maxlength="15">
+<form action="upload.php" method="post" id="myForm" enctype="multipart/form-data">
+    <input type="text" name="dosyaAdi" id="dosya" placeholder="Dosyanın yeni adı" required maxlength="15">
     <input type="number" name="inputWidth" size="5" placeholder="width..." required max="800">
     <input type="number" name="inputHeight" size="5" placeholder="height..." required max="800">
-    <input type="file" name="dosya" required/> <br><br>
+    <input type="file" name="dosya" id="dosyaSec" required/> <br><br>
+
+    <!--    Progress Bar-->
+    <div class="progress" style="width: 80vh; display: none;">
+        <div class="progress-bar progress-bar-striped" role="progressbar">
+        </div>
+    </div>
+    <!--    ../ Progress Bar-->
+
+    <br>
     <input type="submit" name="sendFile" value="Yükle" />
 </form>
 
