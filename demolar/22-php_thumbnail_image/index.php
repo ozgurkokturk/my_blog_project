@@ -27,18 +27,21 @@
     <input type="number" name="inputWidth" size="5" placeholder="width..." required max="800">
     <input type="number" name="inputHeight" size="5" placeholder="height..." required max="800">
     <input type="file" name="dosya" id="dosyaSec" required/> <br><br>
-
-    <!--    Progress Bar-->
-    <div class="progress" style="width: 80vh; display: none;">
-        <div class="progress-bar progress-bar-striped" role="progressbar">
-        </div>
-    </div>
-    <!--    ../ Progress Bar-->
-
-    <br>
     <input type="submit" name="sendFile" value="Yükle" />
 </form>
-
+<br> <br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <!--    Progress Bar-->
+            <div class="progress" style="display: none;">
+                <div class="progress-bar progress-bar-striped" role="progressbar">
+                </div>
+            </div>
+            <!--    ../ Progress Bar-->
+        </div>
+    </div>
+</div>
 
 <div class="container-fluid mt-5">
     <div class="row">
