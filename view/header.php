@@ -4,7 +4,7 @@
     
     <title>Özgür Sina KÖKTÜRK</title>
 
-    <meta name="google-site-verification" content="UnhWhjXt_78BYMLA8CTddKERY7fJgHr0FH60edFZv70" />
+	<meta name="google-site-verification" content="JVWq9UtWR-R_bu2B1FamDXnfAkVe-e2jyU8v5GzVKjE" />
 
     <meta charset="UTF-8">
     <meta name="viewport"
