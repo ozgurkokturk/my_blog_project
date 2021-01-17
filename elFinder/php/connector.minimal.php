@@ -140,6 +140,7 @@ function access($attr, $path, $data, $volume, $isDir, $relpath) {
 		:  null;                                 // else elFinder decide it itself
 }
 
+$yolumuz = 'http://localhost/myproject/';
 
 // Documentation for connector options:
 // https://github.com/Studio-42/elFinder/wiki/Connector-configuration-options
@@ -149,8 +150,8 @@ $opts = array(
 		// Items volume
 		array(
 			'driver'        => 'LocalFileSystem',           // driver for accessing file system (REQUIRED)
-			'path'          => '../files/',                 // path to files (REQUIRED)
-			'URL'           => dirname($_SERVER['PHP_SELF']) . '/../files/', // URL to files (REQUIRED)
+			'path'          => '../../dosyalar/',                 // path to files (REQUIRED)
+			'URL'           => $yolumuz. 'dosyalar/', // URL to files (REQUIRED)
 			'trashHash'     => 't1_Lw',                     // elFinder's hash of trash folder
 			'winHashFix'    => DIRECTORY_SEPARATOR !== '/', // to make hash same to Linux one on windows too
 			'uploadDeny'    => array('all'),                // All Mimetypes not allowed to upload

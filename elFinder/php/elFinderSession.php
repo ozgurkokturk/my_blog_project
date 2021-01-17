@@ -1,6 +1,14 @@
 <?php
-session_start();
-/**
+
+if (!isset($_SESSION)){
+    session_start();
+}
+
+
+if (isset($_SESSION["kadi"])) {
+	
+	
+	/**
  * elFinder - file manager for web.
  * Session Wrapper Class.
  *
@@ -335,3 +343,11 @@ class elFinderSession implements elFinderSessionInterface
     {
     }
 }
+
+	
+	
+	
+	
+}
+
+

